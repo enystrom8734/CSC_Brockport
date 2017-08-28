@@ -1,0 +1,42 @@
+Lecture5
+
+Any label in a program is technically a function because the program can jump to any label
+
+There are four jump instructions
+j label 	| is an unconditional jump no saving of return address
+jal	label 	| Jump and link - saves the return address (+4) in $ra while jumping
+jr R		| Jumps to address stored in Register R
+			| jr $ra will jump to the return address ("return")
+
+						jal getInput
+			
+			getInput:	...
+						jr $ra
+						
+jalr Rd, Rs | Rd is return address, Rs holds an address that you are jumping to
+			Nested functions cannot use $ra for every return address
+			
+			When a function is called in high level languages, a frame is put on the runtime stack containing
+			the return address
+			all input parameters to the function
+			places to store local variables of the function
+			places to store values returned from the function
+			
+addi $sp, $sp - 32 (Allocate 8 words of memory on the stack)
+sw $t0, 4($sp)
+sw $t1, 8($sp)
+la $s0, label
+jalr $s1, $s0
+sw $s1, 0 ($sp)
+
+
+
+
+
+1. USe $f registers for float (even only) for x1,x2,y1,y2 and the results
+2. The registers holding return addresses of functions are in the regular registers
+3. Use only even number $f registers
+4. Input of floating  point values go into $f0 and must be moved to other registers
+5. When you output a double use syscall 3 and make sure that the value you are outputting is in $f12
+6. Value of pie can go into the .data area
+	PI: .double 3.14159 (l.d into register)

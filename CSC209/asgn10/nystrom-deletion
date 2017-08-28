@@ -1,0 +1,119 @@
+Script started on Tue 01 Dec 2015 03:42:05 PM EST
+[51] [enyst1@holly2]% cat delete 
+#!/bin/bash
+# The program will remove the named file/directory from
+# the current working directory and place it in ~/.trash.
+# Invoke as
+#
+#     ./delete filename
+#
+# Check for argument
+if [[ $# -ne 1 ]] 
+   then
+      echo "usage: $0 filename"
+      exit 1
+fi
+# Check if the named entry exists in the cwd
+if [[ !(-e $1) ]] 
+   then
+      echo "$0: $1 does not exist"
+      exit 2
+fi
+# Check if ~/.trash exists; create one if necessary
+if [[ !(-d ~/.trash) ]] 
+   then
+      mkdir ~/.trash
+fi
+# Check if ~/.trash contains an entry with the given name
+if [[ -e ~/.trash/$1 ]] 
+   then
+      echo -n "$0: $1 exists in .trash. Overwrite? (y/n) "
+      read resp
+      if [[ $resp == "y" ]] 
+         then
+           rm -rf ~/.trash/$1
+         else
+            echo "$0: $1 was not deleted"
+            exit 3
+      fi
+fi
+# Move the entry from the cwd to ~/.trash
+mv $1 ~/.trash
+exit 0
+#
+[52] [enyst1@holly2]% cat undelete 
+#!/bin/bash
+# The program will restore the named file/directory from
+# the ~/.trash and place it in the current working directory.
+# Invoke as
+#
+#     ./undelete filename
+#
+# Check for argument
+if [[ $# -ne 1 ]] 
+   then
+      echo "usage: $0 filename"
+      exit 1
+fi
+# Save Current working directory as variable 
+cwd=`pwd`
+# Check if ~/.trash exists; exit with error otherwise
+if [[ !(-d ~/.trash) ]] 
+   then
+      echo "~/.trash does not exist"
+	  exit 2
+fi
+# Check if the named entry exists in the trash
+if [[ !(-e ~/.trash/$1) ]] 
+   then
+      echo "$0: $1 does not exist"
+      exit 3
+fi
+# Check if cwd contains an entry with the given name
+if [[ -e ./$1 ]] 
+   then
+      echo -n "$0: $1 exists in current directory. Overwrite? (y/n) "
+      read resp
+      if [[ $resp == "y" ]] 
+         then
+            rm -rf $cwd/$1
+         else
+            echo "$0: $1 was not restored"
+            exit 4
+      fi
+fi
+# Move the entry from the ~/.trash to cwd
+mv ~/.trash/$1 $cwd/$1
+exit 0
+#
+
+[53] [enyst1@holly2]% delete 
+usage: .//delete filename
+[54] [enyst1@holly2]% n[Kundelete 
+usage: .//undelete filename
+[55] [enyst1@holly2]% touch test
+[56] [enyst1@holly2]% delete test
+[57] [enyst1@holly2]% undelete test
+[58] [enyst1@holly2]% delete test
+[59] [enyst1@holly2]% touch tet
+[60] [enyst1@holly2]% touch test
+[61] [enyst1@holly2]% u[Kdelete tet[Kst
+.//delete: test exists in .trash. Overwrite? (y/n) n
+.//delete: test was not deleted
+[62] [enyst1@holly2]% delete test
+.//delete: test exists in .trash. Overwrite? (y/n) y
+[63] [enyst1@holly2]% delete test
+.//delete: test does not exist
+[64] [enyst1@holly2]% touch test
+[65] [enyst1@holly2]% undelete test
+.//undelete: test exists in current directory. Overwrite? (y/n) n
+.//undelete: test was not restored
+[66] [enyst1@holly2]% undelete test
+.//undelete: test exists in current directory. Overwrite? (y/n) y
+[67] [enyst1@holly2]% rm -rf ./[K[K~./[K[K/.trash/
+[68] [enyst1@holly2]% rm -rf ~/.trash/[23Gundelete test[K
+~/.trash does not exist
+[69] [enyst1@holly2]% exit
+exit
+
+Script done on Tue 01 Dec 2015 03:45:03 PM EST

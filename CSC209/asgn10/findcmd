@@ -1,0 +1,41 @@
+#! /bin/bash
+# This program will find the given command in the 
+# users path and system path
+#
+# Invoke as
+#
+# ./findcmd command
+#
+#
+# Check for argument
+if [[ $# -ne 1 ]]
+   then 
+      echo "usage: $0 command"
+      exit 1
+fi
+# Save the $PATH as $pathlist for modified purposes
+pathlist=`echo $PATH | tr ':' ' '`
+
+# For loop for checking paths
+for i in $pathlist; do
+   # Check if the directory is readable and executable
+   if [[ -r $i && -x $i ]]
+      then
+         # Find in the listed directory for command
+         cmd=`find $i -name $1`
+	 # Alternative code for finding, works, extra / in ./
+	 # cmd = `ls -d -1 $i/* | grep $i/$1$`
+         # Check if file is executable
+         if [[ -x $cmd ]]
+            then
+               echo $cmd
+               exit 0
+         fi
+      else
+         echo $i not readable or executable, skipping...
+   fi
+done
+
+# Loop finished and no command found, print and exit
+echo $1: command not found
+exit 0

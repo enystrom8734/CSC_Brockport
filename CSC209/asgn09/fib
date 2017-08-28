@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# Fibonacci Sequence (Author: Erik Nystrom, Date: 11/16/2015)
+#
+# usage: ./fibonacci [number of sequences]
+#
+# Purpose of program
+echo "This program prints terms in the Fibonacci sequence"
+echo -n "Number of terms to be printed (enter a non-negative integer): "; read a
+if [[ $a -lt 0 ]]; then
+	echo "Sorry, you must enter a non-negative integer!"
+	exit 1
+else # Perform fibonacci sequence
+	x=0
+	y=1
+	z=1
+	counter=1
+	until [ $counter -gt $a ]
+	do
+		echo $z
+		z=$(( x + y ))
+		x=$y
+		y=$z
+		((counter++))
+	done		
+fi

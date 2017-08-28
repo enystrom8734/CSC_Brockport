@@ -1,0 +1,31 @@
+#!/bin/bash
+# The program will empty the ~/.trash directory
+# Invoke as
+#
+#     ./removetrash
+#
+# Check for arguments
+if [[ $# -gt 0 ]] 
+   then
+      echo "usage: $0"
+      exit 1
+fi
+# Check if ~/.trash exists; exit with error otherwise
+if [[ !(-d ~/.trash) ]] 
+   then
+      echo "~/.trash does not exist"
+	  exit 2
+fi
+# Check if user is sure they want to empty trash
+echo -n "$0: Sure you want to empty trash? (y/n) "
+read resp
+if [[ $resp == "y" ]] 
+  then
+    rm -rf ~/.trash/* ~/.trash/..?* ~/.trash/.[!.]*
+    echo "$0: trash emptied"
+    exit 0
+  else
+    echo "$0: trash was not emptied"
+    exit 3
+fi
+

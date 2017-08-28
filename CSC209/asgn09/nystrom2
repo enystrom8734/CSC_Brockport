@@ -1,0 +1,114 @@
+Script started on Tue 17 Nov 2015 04:10:12 PM EST
+[51] [enyst1@holly2]% echo Erik Nystrom
+Erik Nystrom
+[52] [enyst1@holly2]% cat -n fib
+     1	#!/bin/bash
+     2	#
+     3	# Fibonacci Sequence (Author: Erik Nystrom, Date: 11/16/2015)
+     4	#
+     5	# usage: ./fibonacci [number of sequences]
+     6	#
+     7	# Purpose of program
+     8	echo "This program prints terms in the Fibonacci sequence"
+     9	echo -n "Number of terms to be printed (enter a non-negative integer): "; read a
+    10	if [[ $a -lt 0 ]]; then
+    11		echo "Sorry, you must enter a non-negative integer!"
+    12		exit 1
+    13	else # Perform fibonacci sequence
+    14		x=0
+    15		y=1
+    16		z=1
+    17		counter=1
+    18		until [ $counter -gt $a ]
+    19		do
+    20			echo $z
+    21			z=$(( x + y ))
+    22			x=$y
+    23			y=$z
+    24			((counter++))
+    25		done		
+    26	fi
+[53] [enyst1@holly2]% ./fib -5
+This program prints terms in the Fibonacci sequence
+Number of terms to be printed (enter a non-negative integer): -5
+Sorry, you must enter a non-negative integer!
+[54] [enyst1@holly2]% ./fib -5[K[K
+This program prints terms in the Fibonacci sequence
+Number of terms to be printed (enter a non-negative integer): -1
+Sorry, you must enter a non-negative integer!
+[55] [enyst1@holly2]% ./fib
+This program prints terms in the Fibonacci sequence
+Number of terms to be printed (enter a non-negative integer): 0
+[56] [enyst1@holly2]% ./fib
+This program prints terms in the Fibonacci sequence
+Number of terms to be printed (enter a non-negative integer): 1
+1
+[57] [enyst1@holly2]% ./fib
+This program prints terms in the Fibonacci sequence
+Number of terms to be printed (enter a non-negative integer): 2
+1
+1
+[58] [enyst1@holly2]% ./fib
+This program prints terms in the Fibonacci sequence
+Number of terms to be printed (enter a non-negative integer): 5
+1
+1
+2
+3
+5
+[59] [enyst1@holly2]% ./fib
+This program prints terms in the Fibonacci sequence
+Number of terms to be printed (enter a non-negative integer): 16
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+144
+233
+377
+610
+987
+[60] [enyst1@holly2]% ./fib
+This program prints terms in the Fibonacci sequence
+Number of terms to be printed (enter a non-negative integer): 30
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+144
+233
+377
+610
+987
+1597
+2584
+4181
+6765
+10946
+17711
+28657
+46368
+75025
+121393
+196418
+317811
+514229
+832040
+[61] [enyst1@holly2]% exit
+exit
+
+Script done on Tue 17 Nov 2015 04:11:15 PM EST

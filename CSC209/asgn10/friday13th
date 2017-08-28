@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [[ $# -eq 0 ]]; then
+   year=`date +%Y`
+else
+   year=$1
+fi
+
+month=1
+count=0
+until [ $month -gt 12 ]
+do
+   count=$(( `cal $month $year | awk '{print $6}' | grep 13 | wc -l` + count ))
+   ((month++))
+done
+echo "Number of Friday the 13ths in the year $year is: $count"
+
+exit 0

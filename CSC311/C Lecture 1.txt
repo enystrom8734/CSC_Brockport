@@ -1,0 +1,54 @@
+	C Programming Language - C Lecture 1
+	
+	In Java the main construct is a class
+	In C, the main construct is the function
+	Every program must have a function call main
+	
+	Write other methods 
+	
+	int main ()
+	{
+		return 0;
+	}
+	
+	For output 
+	int x = 50;
+	printf ("This is x in octal %0 and this is x in hex %x", x, x);
+	
+	format specifiers %c, %d, %f, %o, %p, %s, %x, %u
+	Character, Decimal, Float, Octal, Pointer, String, Hex, Unsigned
+	
+	Input
+	scanf ("%d", &x);
+	& means address of
+	
+	Function parameters
+	Java passes all parameters by value
+	void swap (int x, int y)
+	{
+		int temp = x;
+		x = y;
+		y = temp;
+	}
+	
+	void swap (int* x, int* y)
+	{ 
+		int temp = *x;
+		*x = *y;
+		*y = temp;
+	}
+	
+	In main:
+	
+	swap (&a, &b)
+	
+	void methods and value returning methods
+	
+	void circle_stuff(int radius, int *area, int *circum)
+	
+	circle_stuff (10, &x, &y)
+	
+	<, >, <=, >= !=, &&, ||, !, and == - Integer operators
+	x=5;
+	if (x = 3)
+		printf ("You idiot!");

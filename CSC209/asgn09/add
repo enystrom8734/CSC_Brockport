@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# Add (Author: Erik Nystrom, Date: 11/16/2015)
+#
+# usage: ./add [integer1 ...]
+#
+# Purpose of program
+if [[ $# -eq 0 ]]; then
+	echo "usage: add integer1 ..."
+	exit 1
+else
+	sum=0
+	for n in $@
+	do
+		sum=$(( sum+n ))
+	done
+fi
+echo "The sum total of the given integers is $sum"

@@ -1,0 +1,52 @@
+Script started on Tue 08 Sep 2015 07:12:40 PM EDT
+[6] [enyst1@holly2]% echo $USER
+enyst1
+[7] [enyst1@holly2]% pwd
+/home/spring15/enyst1/csc209/asgn02
+[8] [enyst1@holly2]% ls -ld ~
+drwx--x--x 8 enyst1 students 4096 Sep  8 18:52 /home/spring15/enyst1
+[9] [enyst1@holly2]% ls -ld ../../csc209/
+drwx------ 4 enyst1 students 4096 Sep  8 18:36 ../../csc209/
+[10] [enyst1@holly2]% ls -l ../
+total 8
+drwx------ 2 enyst1 students 4096 Sep  1 19:55 asgn01
+drwx------ 2 enyst1 students 4096 Sep  8 19:12 asgn02
+[11] [enyst1@holly2]% ls -ld .
+drwx------ 2 enyst1 students 4096 Sep  8 19:12 .
+[12] [enyst1@holly2]% ls -la ../asgn01
+total 12
+drwx------ 2 enyst1 students 4096 Sep  1 19:55 .
+drwx------ 4 enyst1 students 4096 Sep  8 18:36 ..
+-rwx------ 1 enyst1 students   73 Sep  1 19:55 hello.bash
+[13] [enyst1@holly2]% ls -la /[K.
+total 36
+drwx------ 2 enyst1 students 4096 Sep  8 19:12 .
+drwx------ 4 enyst1 students 4096 Sep  8 18:36 ..
+-rwx------ 1 enyst1 students 4945 Sep  8 18:45 hello
+-rw------- 1 enyst1 students  101 Sep  8 18:44 hello.c
+-rw------- 1 enyst1 students  418 Sep  8 18:48 Hello.class
+-rw------- 1 enyst1 students  110 Sep  8 18:48 Hello.java
+-rwx------ 1 enyst1 students   44 Sep  8 18:40 hello.py
+-rw------- 1 enyst1 students    0 Sep  8 19:12 nystrom
+-rw------- 1 enyst1 students   41 Sep  8 18:58 .plan
+[14] [enyst1@holly2]% cat ../asgn-1/hello.bash
+cat: ../asgn-1/hello.bash: No such file or directory
+[15] [enyst1@holly2]% ../asgn01.[K/hello.bash
+Hello, World!
+[16] [enyst1@holly2]% cat ~/csc209/asgn02/hello.py
+#! /usr/bin/python
+#
+print "Hello, Mars!"
+#
+[17] [enyst1@holly2]% ls -la ../../public_html/
+total 16
+drwx--x--x 4 enyst1 students 4096 Sep  1 19:40 .
+drwx--x--x 8 enyst1 students 4096 Sep  8 18:52 ..
+drwx--x--x 2 enyst1 students 4096 Sep  1 18:45 cgi-bin
+drwx--x--x 2 enyst1 students 4096 Sep  1 19:47 csc209
+[18] [enyst1@holly2]% wc /etc/passwd
+  46   73 2189 /etc/passwd
+[19] [enyst1@holly2]% exit
+exit
+
+Script done on Tue 08 Sep 2015 07:15:15 PM EDT

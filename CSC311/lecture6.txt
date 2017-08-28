@@ -1,0 +1,52 @@
+Floating point represenation in base 2
+1. Find the base 2 representation of the number
+	This is ususually just an approximation
+2. Memory cells are divided into 3 parts
+		-Sign of number
+		- Mantissa (significant)
+		- exponent
+		Example 8 bit memory location
+3. The sign goes into the far left bit
+4. The rightmost 4 bits are the mantissa (ignoring the first one of the
+		base 2 representation, take the next four bits)
+5. Assume that the mantissa represents 1.xxxx, (the x's are the bits that we stored)
+6. The exponent tells us how much to move the point to get to the number that we are actually storing
+7. The exponent is represented in Excess-3 notation 
+	0 would be represented as 0 + 3 = 3 ( or 011)
+	With excess-3 notation (3 bits) we can represent the numbers -3 through 4
+8. If the exponent (point) needs to move to the right to get actual number, we call this a negative exponent
+	left is positive
+9. 
+
+Problem 1 - lack of exact base 2 representations of fp numbers
+Problem 2 - Not enough bits in the mantissa to represent the number ( truncation error)
+Problem 3 - Not enough bits in the exponent - Crash ( FP overflow )
+With 8 bits we can represent exactly 256 different floating point numbers, including +/-Inf and NaN
+
+Use 32 bits for a fp#
+- 1 sign bit
+- 23 bit mantissa
+- 8 bit exponent
+The exponent is represented using Excess-127 notation
+
+Use 64 bits for a fp# (double)
+- 1 sign bit
+- 52 bit mantissa
+- 11 bit exponent
+The exponent is represented using Excess-1023 notation
+
+You dont ever want to do x ==y for doubles x and y that have had calculations put in them
+
+Recursive functions in MIPS
+ Function solves a problem by itself with smaller input until the input gets small enough to return
+ a result without any more function calls
+ Then, all of the previous calls are completed to build the answer
+ 
+ If using the stack for function calls
+ - Leave one memory location for each input parameter
+ - One memory location for each output value
+ - One memory location for each local variable
+ - One memory location (4bits) for the return address
+ In the above example I need 16 bytes everytime I call the function
+ 
+ addiu $sp, $sp, -16mj

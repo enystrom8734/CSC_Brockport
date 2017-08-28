@@ -1,0 +1,15 @@
+	I/O in MIPs
+	
+	MIPS is a load/store architecture, which means that the only way to get data into or out of	registers is through the load or store instructions. However, we have been using system calls to input and output data.
+	
+	The input and output devices are not part of the computer but MIPS has mapped the input and output buffers of the devices to memory locations.
+	
+	These memory locations are those with addresses of xffff0000 and higher
+	Now we can access input and output devices using load and store on these memory addresses
+	
+	Polling - A loop that constantly checks to see if input or out put has actually happened
+	Address 0xffff0000 is called the receiver control word
+	Address 0xffff0004 is called the receiver data word
+	Address 0xffff0008 is called the transmitter control word
+	Address 0xffff000c is called the transmitter data word]
+	

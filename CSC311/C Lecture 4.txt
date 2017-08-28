@@ -1,0 +1,106 @@
+	Strings in C
+	
+	No string class
+	Strings are arrays of characters
+	However, not all arrays of characters are necessarily strings
+	
+	Strings are terminated with the NULL character '\0'
+	The NULL character is put in when you read a string using 
+	scanf ("%s", ...);
+	
+	printf("%s", s); will crash if s was not terminated with '\0'
+	
+	Strings can be declared as:
+	char s[80];
+	or 
+	char * s;
+	
+	Functions on strings
+	#include <string.h>
+	#include <atoi.h> (ascii to integer)
+	
+	strlen (length)
+	Returns type int, (the number of characters in the string)
+	
+	strcpy (assignment)
+	t = malloc(strlen(s));
+	strcpy (t,s);
+	However t must have enough memory allocated to fit all of s in it
+	The computer will not expand t to allow s to fit)
+	
+	strcmp (comparison)
+	int x = strcmp(s,t)
+	Returns an int that will be <  0 if s < t or == 0 if s == t or 
+	> 0 if s > t
+	
+	strcat (concatenation)
+	strcat(t, s);
+	
+	Concatenates s onto the end of t and puts the result into t
+	t must have enough memory allocated to allow s to be put on the end of it.
+	
+	strrev (reverse)
+		
+	scanf("%s")
+	Stops reading at th efirst white space character
+	
+	
+	struct
+	Sort of like a class without method
+	struct person
+	{
+		char * name;
+		int age;
+		char * address;
+	} p1, p2;
+	
+	struct person p3;
+	p3.age = 40;
+	
+	The only things you can do with type person as a whole are:
+	Assignment p3 = p1;
+	&person;
+	sizeof(person);
+	
+	person* ptr;
+	*ptr.age = 40; // error
+	ptr -> age = 40;
+	
+	struct reg {
+		unsigned opcode : 6;
+		unsigned r1		: 5;
+		unsigned r2		: 5;
+		unsigned rd		: 5;
+		unsigned blank	: 5;
+		unsigned fun	: 6;
+	};
+	
+	Enumerated types
+	
+	enum boolean {false, true};
+	We can get away with a lot that doesnt make sense with enum types
+	
+	boolean b;
+	b = true;
+	b = 1;
+	b = 7;
+	
+	union x
+	{
+		char s [10];
+		int i;
+		double d;
+	}
+	
+	typedef int boolean;
+	
+	static int count = 0;
+	{
+		static int x = 100;8	
+		
+		
+		
+		
+	}
+	
+	printf("...", x);

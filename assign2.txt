@@ -1,0 +1,87 @@
+% Question 1 ******************************************************
+toy(mickey).
+toy(snoopy).
+
+plays(jane, snoopy).
+plays(jane, mickey).
+
+likes(jane, TOY) :- plays(jane, TOY).
+likes(ann, ITEM) :- likes(jane, ITEM).
+
+% Question 2 ******************************************************
+works(tom, hr).
+works(harry, qa).
+
+manager(dick, hr).
+manager(mary, qa).
+
+boss(X, Y) :- works(Y,D),manager(X,D).
+
+% Question 3 ******************************************************
+% Person Relation 
+person(1, john, M, 20).
+person(2, mary, F, 22).
+person(3, jack, M, 21).
+person(4, tina, F, 30).
+person(5, ted, M, 19).
+
+% Activities Relation
+activity(a1, swimming, 1, 40).
+activity(a2, yoga, 2, 80).
+activity(a3, origami, 1, 25).
+activity(a4, tennis, 2, 90).
+
+% Volunteers Relation
+volunteers(1, a1, tuesday).
+volunteers(2, a2, wednesday).
+volunteers(3, a1, monday).
+volunteers(4, a2, thursday).
+volunteers(5, a1, wednesday).
+volunteers(1, a2, tuesday).
+volunteers(2, a1, wednesday).
+volunteers(3, a2, thursday).
+volunteers(4, a1, monday).
+volunteers(5, a2, thursday).
+volunteers(1, a3, friday).
+volunteers(2, a4, thursday).
+volunteers(3, a3, monday).
+volunteers(4, a4, saturday).
+volunteers(5, a3, tuesday).
+
+% Predicates
+listPersonIds :-
+	setof(ID, volunteered(ID), Z), 
+	person(ID, NAME, _, _),
+	write('Volunteer ID: '),
+	write(ID), write(' & Name: '),
+	write(NAME),
+	nl,
+	fail. 
+	
+volunteered(ID) :- volunteers(ID,_,_),person(ID,_,_,_).
+
+findVolunteerDay :-
+	write('Volunteer Name? '),
+	read(NAME), nl,
+	write('Activity? '),
+	read(ACT),
+	searchDay(NAME, ACT).
+	
+searchDay(NAME, ACT) :-
+	person(ID, NAME, _, _),
+	activity(AID, ACT, _, _),
+	volunteers(ID, AID, DAY),
+	write('Day of activity: '),
+	write(DAY), nl.
+	
+% Question 4 ******************************************************
+removeSecond([],[]).
+removeSecond([X],[X]).
+removeSecond([X, Y|Z], [X|Z]).
+
+% Question 5 ******************************************************
+countAllX(_,[],0).
+countAllX(A,[A|L],N):- countAllX(A,L,N1),N is N1+1.
+countAllX(A,[B|L],N):- atom(B),countAllX(A,L,N).
+countAllX(A,[B|L],N):- number(B),countAllX(A,L,N).
+countAllX(A,[B|L],N):- countAllX(A,B,N1),countAllX(A,L,N2),N is N1+N2.

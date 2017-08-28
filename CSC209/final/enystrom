@@ -1,0 +1,102 @@
+Script started on Tue 15 Dec 2015 06:06:36 PM EST
+[51] [enyst1@holly2]% echo Erik Nystrom
+Erik Nystrom
+[52] [enyst1@holly2]% pwd
+/home/spring15/enyst1/csc209/final
+[53] [enyst1@holly2]% cat cache 
+#! /bin/bash
+#
+# Program to back an ordinary file in ~/.cache
+# A time stamp is appended to the file name
+# The file permissions are set as read-only
+#
+# Usage: ./cache file
+#
+# Check for argument
+if [[ $# -ne 1 ]]
+   then
+      echo "Usage: $0 file"
+      exit 1
+fi
+#
+# Check if the named files exists and can be accessed
+if [[ !(-f $1) ]]
+   then
+      echo "$0: File $1 cannot be accessed"
+      exit 2
+fi
+#
+# Check if the is readable
+if [[ !(-r $1) ]]
+   then
+      echo "$0: File $1 is not readable"
+      exit 3
+fi
+#
+# Check if ~/.cache directory exists; else create one
+if [[ !(-d ~/.cache) ]]
+   then
+      mkdir ~/.cache
+fi
+#
+# Set permissions for ~/.cache directory
+chmod 700 ~/.cache
+#
+# Form time stamp and copy file
+stamp=$(date +%Y%m%d%H%M%S)
+new=$(basename $1)
+new="$new.$stamp"
+cp $1 ~/.cache/$new
+chmod 400 ~/.cache/$new
+#
+exit 0
+#
+[54] [enyst1@holly2]% ls -ls[Ka ~/[K
+total 136
+drwx--x--x   10 enyst1 students  4096 Dec 15 18:06 .
+drwxr-xr-x 1149 root   root     36864 Sep  9 04:30 ..
+drwx------    4 enyst1 students  4096 May  7  2015 acsc311
+drwxr-xr-x    2 enyst1 students  4096 Sep  1 19:16 all_backup
+-rw-------    1 enyst1 students   851 Dec  4 14:09 .bash_history
+-rw-------    1 enyst1 students    97 Sep  1 19:23 .bash_logout
+-rwx-----x    1 enyst1 students   176 Oct 28  2014 .bash_profile
+-rw-------    1 enyst1 students   382 Sep  1 19:22 .bashrc
+drwx------    2 enyst1 students  4096 Dec  1 14:25 bin
+-rw-r--r--    1 enyst1 students  1480 Apr 16  2015 c.nanorc
+drwx------   15 enyst1 students  4096 Dec 15 17:51 csc209
+-rw-------    1 enyst1 students   227 Sep  1 19:21 .cshrc
+-rw-------    1 enyst1 students  1260 Dec 15 17:50 .history
+-rw-------    1 enyst1 students    58 Nov 24 19:24 .lesshst
+-rw-------    1 enyst1 students    81 Sep  1 19:22 .login
+-rw-------    1 enyst1 students   157 Apr 16  2015 .nanorc
+-rw-------    1 enyst1 students    11 Apr  7  2015 .picorc
+-rwx------    1 enyst1 students    44 Nov  3 15:56 ping
+-rw-------    1 enyst1 students    41 Sep  8 18:53 .plan
+drwx--x--x    4 enyst1 students  4096 Sep  1 19:40 public_html
+-rw-------    1 enyst1 students     2 Apr 16  2015 .sh_history
+drwx------    2 enyst1 students  4096 Sep  1 19:17 .ssh
+drwxr-xr-x    2 enyst1 students  4096 Sep  1 19:20 tmullins_logins
+drwx------    2 enyst1 students  4096 Dec  1 16:46 .trash
+-rw-------    1 enyst1 students  4139 Nov 17 15:47 .viminfo
+[55] [enyst1@holly2]% cache
+Usage: .//cache file
+[56] [enyst1@holly2]% cache junk
+.//cache: File junk cannot be accessed
+[57] [enyst1@holly2]% cache junk[K[K[K[Ktest1
+[58] [enyst1@holly2]% cache test1[K[K[K[K[K.test2
+[59] [enyst1@holly2]% cache .test2[K[K[K[K[K[Kproject2
+.//cache: File project2 cannot be accessed
+[60] [enyst1@holly2]% cache project2[K[K[K[K[K[K[K[K./project1/hello
+[61] [enyst1@holly2]% cache ./project1/hello[K[K[K[K[K[K[K[K[K[K[K[K[K[Ktest1
+[62] [enyst1@holly2]% ls -la ~/.cache/
+total 12
+drwx------  2 enyst1 students 4096 Dec 15 18:08 .
+drwx--x--x 11 enyst1 students 4096 Dec 15 18:08 ..
+-r--------  1 enyst1 students   38 Dec 15 18:08 hello.20151215180834
+-r--------  1 enyst1 students    0 Dec 15 18:08 test1.20151215180809
+-r--------  1 enyst1 students    0 Dec 15 18:08 test1.20151215180842
+-r--------  1 enyst1 students    0 Dec 15 18:08 .test2.20151215180814
+[63] [enyst1@holly2]% exit
+exit
+
+Script done on Tue 15 Dec 2015 06:09:27 PM EST

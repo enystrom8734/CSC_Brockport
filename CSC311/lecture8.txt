@@ -1,0 +1,24 @@
+
+
+	addiu	$sp, $sp, -12
+	sw		$t0, 0 ($sp)
+	sw		$t1, 4 ($sp)
+	function call
+	lw		$t2, 8 ($sp)
+	addiu	$sp, $sp, 12
+	
+	
+	aligned and unaligned
+	lw must use an address that is a multiple of 4
+	lh load halfword must use multiple address of 2
+	lb multiple of 1 tf any
+	
+	unalign an integer
+	must store by bytes not by word
+	dissect thr integer by using AND and shit operations to get each quarter of the integer
+	into a single byte byte to be stored
+
+	li $t0, 0x0000FF00
+	and $t2, t1. $t0
+	srl $t2, $t2, 8
+	sb	$t2, 0 ($s0)

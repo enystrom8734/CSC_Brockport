@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# Time of day greeting (Author: Erik Nystrom, Date: 11/17/2015)
+#
+# usage: ./greet [hour between 0-23]
+#
+if [[ $# -eq 0 ]]
+   then
+      hour=`date +%H`      # command output substitution
+   else
+      hour=$1
+fi
+#
+if [[ $hour -ge 0 && $hour -le 23 ]]; then
+		if [[ $hour -lt 12 ]]
+		   then
+			  echo "Good Morning!"
+		   else
+			  if [[ $hour -lt 18 ]]
+				 then
+					echo "Good Afternoon!"
+				 else
+					echo "Good Evening!"
+			  fi
+		fi
+	else
+		echo "The value of hour must be between 0 and 23"
+		exit 1
+fi
+#
+exit 0
+#
+

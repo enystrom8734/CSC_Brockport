@@ -1,0 +1,58 @@
+	Every variable has an address and a value
+	int x;
+	value of x is written as x
+	The address of x is written as &x
+	
+	Declare a pointer variable
+	int* intptr1;
+	Pointers have addresses as values
+	
+	Assignment of pointers
+	1. Assign the address of an existing int 
+		intptr1 = &x;
+	2. Assign another pointer of the same type
+		int* intptr2;
+		intptr2 = intptr1;
+	3. Assign NULL to any pointer
+		#include <stdlib.h>
+	4. Dynamic allocation and assignment
+		intptr1 = (int*) malloc(size);
+		intptr1 = (int*) malloc(sizeof(int));
+		intptr1 = (int*) malloc(10);
+		intptr1 = (int*) malloc(sizeof(int) * 10);
+	
+	Dereferencing pointers
+	This means following the arrow and using the memory location that it pointed to
+	We write this as *intptr1
+	
+	WE can use pointers in place of primitive type variables by dereferencing them
+	
+	*intptr1 = 10; ( x = 10 )
+	
+	Pointer Arithmetic
+	intptr1++;
+	intptr1 += 10;
+	Comparison of pointers
+	intptr1 == NULL;
+	intptr1 == intptr2;
+	
+	free((void*) intptr1);
+	
+	Pointers and arrays
+	// int [] arr = new arr [10];
+	// arr is the address of arr[0]
+	// ar[i] is arr + i * sizeof data
+	
+	int i;
+	for (i = 0; i <  10; i++){
+		arr[i] = i;
+	}
+	
+	int* p = arr; //fine
+	arr = p;	//error
+	Nothing can be assigned to arr
+	(except for another same same size array)
+	for (i = 0; i<10; i++){
+		*p = i;
+		p++;
+	}

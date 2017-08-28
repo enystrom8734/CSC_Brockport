@@ -1,0 +1,62 @@
+
+	Accessing arrays/processing in MIPs
+	In the .data area you can declare and intialize arrays of any type
+	
+	Arr1: .word 2, 4, 10, 67, -3, 0, 75
+	Arr2: .double 3.14, 2.3, 234.2, 23, 23.5, 33.3, .333, 6.9
+	Arr3: .asciiz "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	
+	-dynamic memory allocation
+	li $v0, 9
+	li $a0, 80
+	syscall
+	
+	This returns the start address of a continuos block of memory that can hold 80 characters into $v0
+	
+	Move into two different registers before processing
+	
+	move $t0, $v0
+	move $s0, $v0
+	
+	li $v0, 8
+	move $a1, $t0
+	li $a0, 80
+	syscall
+	
+	lb $t1, 0 ($t0)
+	addiu $t0, 1 #Move next character
+	
+	li $v0, 4
+	move $a0, $s0
+	syscall
+	
+	
+	0x24924924
+	
+	In pseudo code
+	Load 0x24924924 into a register	(r1)
+	Load 0x00000001 into a register (r2)
+	While (r4 <= 32)
+	Load 1 into a register	(r4)
+	If r1 and r2  != 0
+	{
+		print r4
+		add 1 to r4
+		shift r2 1 position to the left
+	}
+	Else
+	{
+		add 1 to r4
+		shift r2 1 position to the left
+	}
+	
+	
+	syscall 9 allocates main memory while a program is running
+	You need to laod the amont of bytes you need into register $a0.
+	It is a good idea to save the address that syscall 9 gives in to two registers
+	To access individual bytes of memory you use lb (load byte) r1 0 (r2), where r2 is address and r1 is data destination
+	Then, move through the bytes do
+	addiu r2, r2, 1
+	
+	li r3, 0xa
+	beq r1, r3, next

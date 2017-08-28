@@ -1,0 +1,77 @@
+
+	Input Polling
+	li 		$a3, 0xffff0000
+	
+Loop:
+	lw		$t1, 0 ($a3)
+	andi	$t1, $t1, 1
+	beqz	t1, Loop
+	lw		$t0, 4 ($a3)
+	
+	Output polling
+
+	li $a3, 0xffff0000
+	
+Loop:
+	lw		$t1, 8 ($a3)
+	andi	$t1, $t1, 1
+	beqz	$t1, Loop
+	sw		$t0, 12 ($a3)
+	
+	Polling can tie up the computer if no one is there to input something or something goes wrong with the output poll
+	
+	We can use an interrupt when we are ready to do I/O
+	
+	An interrupt is an exception, something unforeseen happening during the running of a program
+	
+	Exceptions in MIPS are handled by a separate processor -
+	Coprocessor 0
+	
+	16 registers in Coprocessor 0
+	We see 4 of them while programs are running
+	Register 8 ($8) - BadVaddress
+	Register 12 ($12) - Status register
+	Register 13 ($13) - Cause register
+	Register 14	($t14) - EPC - Exception Program Counter
+	
+	mtc0 - Move to CoP 0
+	mfc0 - Move from CoP 0
+	
+	mtc0 is the only MIPS instruction where the destination register is the last operand
+	
+	mtc0	$v0, $13
+	This would move something from $v0 to the Cause register in CoP 0
+	
+	When an exception occurs 
+	- The cause register gets a number identifying the source of the problem
+	- The status register is changed so that all new interrupts are disabled until the current problem is handled
+	- The memory address of the instruction that caused the problem is loaded into the EPC
+	- The regular PC is loaded with the first address of the trap handler (exceptions.c?.s?) and this program begins to run
+	- If there is a bad memory access, then the address that caused the problem is loaded into BadVaddress
+	
+	The exception.s program uses registers $k0 and $k1, along with its own registers
+	
+	How to use interrupts to do I/O
+	- Put 0x0000ffff into the Status register
+	- li $t0, 2
+	- la $t1, 0xffff000
+	- sw $t0, 0 ($t1)
+	
+	Any keystroke would cause an interrupt and control would be passed to exceptions.s, with the value 64 going into the cause register
+	
+	All input and output are handled through load and store instructions, even if you can't see the instructions
+	MIPS is a load/store architecture
+	
+	For users of MIPS to do input we have several ways
+	- syscall (most convenient)
+	- Memory mapped I/O polling
+	- Interrupt using exceptions.s, which will also use MMI/O addresses
+	
+	Pipelining 
+	RISC computers use pipelining to speed up execution of programs
+	- Fetch the instruction loading it into the IR and incrementing the PC by 4
+	- Decode the instruction to determine the type of instruction Executes branch instructions in order to update the PC if necessary
+	- Execute the arithmetic and logic instructions and calculate addresses for load and store instructions. The results of arithmetic and logic instructions are store in a special register in the ALU.
+	- Memory is accessed for load and store for other operations the result is moved to another special register called the writeback register
+	- Actually write back the results to the proper register
+	

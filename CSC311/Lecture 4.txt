@@ -1,0 +1,21 @@
+while m !=0
+{ 
+	r = m % 10
+	z = z * 10 + r
+	m = m/10
+}
+
+
+
+
+		Branch in the else case to Else
+		Statements to be done in if case
+		b next
+Else:	
+		Statements to be done in else case
+Next:
+
+quit
+circle
+square
+rectangle

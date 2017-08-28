@@ -1,0 +1,78 @@
+	and $t3, $t1, $t2
+	andi $t2, $t1, imm
+	
+	$t1: abcdef01
+	$t2: 0000ffff
+	what is in $t3 after: and $t3, $t1, $t2
+	
+	$t3: 0000ef01
+	
+	and mainly used as a mask
+	80000000 - to mask the sign bit
+	00000001 - to find even or odd
+	
+	or/ori
+	$t1: abcdef01
+	$t2: 0000ffff
+	what is in $t3 after: or $t3, $t1, $t2
+	
+	$t3: abcdffff
+	
+	or is used to make a bit pattern out of parts of other bit patterns
+	
+	$t4: 12345678
+	
+	and $t3, $t4, $t2
+	li $t5, 0xffff0000
+	and $t6, $t1, $t5
+	or $t0, $t3, $t6
+	
+	$t0: abcd5678
+	
+	xor/xori
+	$t0: 00000010
+	$t1: 00000001
+	$t2: ffffffff
+	xor $t3, $t0, $t2
+	add  $t4, $t3, $t1
+	What is in $t4? $t4=-16
+	
+	nor 
+	
+	sll - Shift left logical
+	srl - Shift right logical
+	sra - Shift right arithmetic
+	
+	$t0: 00000010
+	sra $t1, $t0, 1
+	$t1: 00000008
+	
+	sll $t1, $t0, 2
+	$t1: 64
+	
+	sllv - uses three registers and the amount to shift is stored in the third register
+	srlv
+	srav
+	
+	Data transfer
+	load - store - move
+	
+	load goes into registers
+	store goes from registers to main memory
+	move goes from register to register
+	
+	lw $t0 4($t1)
+	Moving 4 bytes from the address stored in $t1 and loading the bits that are there into register $t0
+	
+	sw $t2 0 ($t3)
+	This stores the contents of register $t2 into the memory location whose address is stored in $t3
+	
+	lb $t0, 0($t1)
+	
+	la (macro) load an address directly into a register
+	li (macro) load an immediate value directly into a register
+	
+	branch if equal (beq) - Branches if two registers have the same value in them and doesnt branch otherwise
+	branch not equal (bne) - Branches if two registers have different values and not if they are the same
+	
+	bltz ( branch if less than or equal to 0) - Uses 1 register

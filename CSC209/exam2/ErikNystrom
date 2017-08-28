@@ -1,0 +1,54 @@
+Script started on Tue 24 Nov 2015 07:03:37 PM EST
+[51] [enyst1@holly2]% echo Erik Nystrom
+Erik Nystrom
+[52] [enyst1@holly2]% cat countHidden
+#!/bin/bash
+# Invoke the code as: ./countHidden directory
+#
+# Check number of command line arguments
+if [[ $# -ne 1 ]]
+   then
+      echo "usage: $0 directory"
+      exit 1
+fi
+#
+# Check if the argument provided is a directory
+if [[ !(-d $1) ]]
+   then
+      echo "usage: $0 directory"
+      exit 2
+fi
+#
+# Determine the count and set the value of a shell variable
+number=`echo $1/.* | wc -w` # command output substitution
+# Subtract two to account for . and .. entries
+number=$(( $number -2 ))
+# Display result
+echo "Number of hidden entries under $1 is: $number"
+#
+exit 0
+#
+[53] [enyst1@holly2]% ./countHidden[K[K[K[K[K[K[K[K[K[K[K[K[Kls -la 
+total 16
+drwx------  3 enyst1 students 4096 Nov 24 19:03 .
+drwx------ 14 enyst1 students 4096 Nov 24 18:54 ..
+-rwx------  1 enyst1 students  574 Nov 24 18:58 countHidden
+-rw-------  1 enyst1 students    0 Nov 24 19:03 ErikNystrom
+-rw-------  1 enyst1 students    0 Nov 24 18:59 .test1
+drwx------  2 enyst1 students 4096 Nov 24 18:59 .test2
+[54] [enyst1@holly2]% ./countHidden ./
+Number of hidden entries under ./ is: 2
+[55] [enyst1@holly2]% ./countHidden ./[K[K~
+Number of hidden entries under /home/spring15/enyst1 is: 14
+[56] [enyst1@holly2]% ./countHidden ~[K/etc
+Number of hidden entries under /etc is: 2
+[57] [enyst1@holly2]% ./countHidden /etc[K[K[Kbin
+Number of hidden entries under /bin is: 0
+[58] [enyst1@holly2]% ./countHidden /bin[K[K[K[K~tmullins
+Number of hidden entries under /home/faculty/tmullins is: -1
+[59] [enyst1@holly2]% ./countHidden ~tmullins[K[K[K[K[K[K[K[K[K
+usage: ./countHidden directory
+[60] [enyst1@holly2]% exit
+exit
+
+Script done on Tue 24 Nov 2015 07:05:45 PM EST

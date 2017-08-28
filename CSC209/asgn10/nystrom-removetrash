@@ -1,0 +1,70 @@
+Script started on Tue 01 Dec 2015 04:45:33 PM EST
+[51] [enyst1@holly2]% cat removetrash 
+#!/bin/bash
+# The program will empty the ~/.trash directory
+# Invoke as
+#
+#     ./removetrash
+#
+# Check for arguments
+if [[ $# -gt 0 ]] 
+   then
+      echo "usage: $0"
+      exit 1
+fi
+# Check if ~/.trash exists; exit with error otherwise
+if [[ !(-d ~/.trash) ]] 
+   then
+      echo "~/.trash does not exist"
+	  exit 2
+fi
+# Check if user is sure they want to empty trash
+echo -n "$0: Sure you want to empty trash? (y/n) "
+read resp
+if [[ $resp == "y" ]] 
+  then
+    rm -rf ~/.trash/* ~/.trash/..?* ~/.trash/.[!.]*
+    echo "$0: trash emptied"
+    exit 0
+  else
+    echo "$0: trash was not emptied"
+    exit 3
+fi
+
+[52] [enyst1@holly2]% removetras[K[K[K[K[K[K[K[K[K[K./removetrash test
+usage: ./removetrash
+[53] [enyst1@holly2]% removetrash 
+~/.trash does not exist
+[54] [enyst1@holly2]% touch test
+[55] [enyst1@holly2]% delte[K[Kete test
+[56] [enyst1@holly2]% touch .dle[K[K[Ktest
+[57] [enyst1@holly2]% delete .test
+[58] [enyst1@holly2]% ls -la ~.[K/.trasj[Kh/
+total 8
+drwx------  2 enyst1 students 4096 Dec  1 16:46 .
+drwx--x--x 10 enyst1 students 4096 Dec  1 16:45 ..
+-rw-------  1 enyst1 students    0 Dec  1 16:45 test
+-rw-------  1 enyst1 students    0 Dec  1 16:46 .test
+[59] [enyst1@holly2]% remoe[Kvetrash 
+.//removetrash: Sure you want to empty trash? (y/n) n
+.//removetrash: trash was not emptied
+[60] [enyst1@holly2]% removetrash
+.//removetrash: Sure you want to empty trash? (y/n) y^[   n
+.//removetrash: trash was not emptied
+[61] [enyst1@holly2]% removetrash[23Gls -la ~/.trash/
+total 8
+drwx------  2 enyst1 students 4096 Dec  1 16:46 .
+drwx--x--x 10 enyst1 students 4096 Dec  1 16:45 ..
+-rw-------  1 enyst1 students    0 Dec  1 16:45 test
+-rw-------  1 enyst1 students    0 Dec  1 16:46 .test
+[62] [enyst1@holly2]% ls -la ~/.trash/[23Gremovetrash[K
+.//removetrash: Sure you want to empty trash? (y/n) y
+.//removetrash: trash emptied
+[63] [enyst1@holly2]% removetrash[23Gls -la ~/.trash/
+total 8
+drwx------  2 enyst1 students 4096 Dec  1 16:46 .
+drwx--x--x 10 enyst1 students 4096 Dec  1 16:45 ..
+[64] [enyst1@holly2]% exit
+exit
+
+Script done on Tue 01 Dec 2015 04:46:44 PM EST

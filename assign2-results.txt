@@ -1,0 +1,91 @@
+
+Interpreting project: assign2
+  Loading Extensions:  aosutils.lsx (always loaded in IDE)
+  Consulting Source Files: 'assign2.pro'
+Type 'quit.' to end and [Ctrl]-C to stop user input.
+
+?- likes(ann, snoopy).
+
+yes
+?- likes(jane, X).
+
+X = snoopy  
+
+X = mickey  
+no
+?- likes(X,Y).
+
+X = jane
+Y = snoopy  
+
+X = jane
+Y = mickey  
+
+X = ann
+Y = snoopy  
+
+X = ann
+Y = mickey  
+no
+?- boss(dick, tom).
+
+yes
+?- boss(dick, harry).
+no
+?- boss(mary, tom).
+no
+?- boss(mary, harry).
+
+yes
+?- boss(X,Y).
+
+X = dick
+Y = tom  
+
+X = mary
+Y = harry  
+no
+?- listPersonIds.
+Volunteer ID: 1 & Name: john
+Volunteer ID: 2 & Name: mary
+Volunteer ID: 3 & Name: jack
+Volunteer ID: 4 & Name: tina
+Volunteer ID: 5 & Name: ted
+no
+?- findVolunteerDay.
+Volunteer Name? ted.
+
+Activity? origami.
+Day of activity: tuesday
+
+yes
+?- findVolunteerDay.
+Volunteer Name? ted.
+
+Activity? swimming.
+Day of activity: wednesday
+
+yes
+?- findVolunteerDay.
+Volunteer Name? ted.
+
+Activity? tennis.
+no
+
+?- removeSecond([a,b,c,d,e,f], L).
+
+L = [a, c, d, e, f]  
+no
+
+?- removeSecond([a,[b,c],d,[e,f]], L).
+
+L = [a, d, [e, f]] 
+
+yes
+
+?- countAllX(a, [a,b,a,[a,1,a,[a,a]]], R).
+
+R = 6 
+
+yes
+?- 

@@ -1,0 +1,31 @@
+Script started on Tue 17 Nov 2015 03:13:55 PM EST
+[40] [enyst1@holly2]% echo Erik Nystrom
+Erik Nystrom
+[41] [enyst1@holly2]% ./greet -1
+The value of hour must be between 0 and 23
+[42] [enyst1@holly2]% ./greet 0
+Good Morning!
+[43] [enyst1@holly2]% ./greet 1
+Good Morning!
+[44] [enyst1@holly2]% ./greet 8
+Good Morning!
+[45] [enyst1@holly2]% ./greet 11
+Good Morning!
+[46] [enyst1@holly2]% ./greet 12
+Good Afternoon!
+[47] [enyst1@holly2]% ./greet 13
+Good Afternoon!
+[48] [enyst1@holly2]% ./greet 17
+Good Afternoon!
+[49] [enyst1@holly2]% ./greet 18
+Good Evening!
+[50] [enyst1@holly2]% ./greet 19
+Good Evening!
+[51] [enyst1@holly2]% ./greet 23
+Good Evening!
+[52] [enyst1@holly2]% ./greet 24
+The value of hour must be between 0 and 23
+[53] [enyst1@holly2]% exit
+exit
+
+Script done on Tue 17 Nov 2015 03:27:45 PM EST

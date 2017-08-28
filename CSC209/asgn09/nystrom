@@ -1,0 +1,67 @@
+Script started on Tue 17 Nov 2015 03:28:02 PM EST
+[51] [enyst1@holly2]% echo Erik Nystrom
+Erik Nystrom
+[52] [enyst1@holly2]% cat -n greet
+     1	#!/bin/bash
+     2	#
+     3	# Time of day greeting (Author: Erik Nystrom, Date: 11/17/2015)
+     4	#
+     5	# usage: ./greet [hour between 0-23]
+     6	#
+     7	if [[ $# -eq 0 ]]
+     8	   then
+     9	      hour=`date +%H`      # command output substitution
+    10	   else
+    11	      hour=$1
+    12	fi
+    13	#
+    14	if [[ $hour -ge 0 && $hour -le 23 ]]; then
+    15			if [[ $hour -lt 12 ]]
+    16			   then
+    17				  echo "Good Morning!"
+    18			   else
+    19				  if [[ $hour -lt 18 ]]
+    20					 then
+    21						echo "Good Afternoon!"
+    22					 else
+    23						echo "Good Evening!"
+    24				  fi
+    25			fi
+    26		else
+    27			echo "The value of hour must be between 0 and 23"
+    28			exit 1
+    29	fi
+    30	#
+    31	exit 0
+    32	#
+    33	
+[53] [enyst1@holly2]% ./greet -1
+The value of hour must be between 0 and 23
+[54] [enyst1@holly2]% ./greet 0
+Good Morning!
+[55] [enyst1@holly2]% ./greet 1
+Good Morning!
+[56] [enyst1@holly2]% ./greet 8
+Good Morning!
+[57] [enyst1@holly2]% ./greet 11
+Good Morning!
+[58] [enyst1@holly2]% ./greet 12
+Good Afternoon!
+[59] [enyst1@holly2]% ./greet 13
+Good Afternoon!
+[60] [enyst1@holly2]% ./greet 17
+Good Afternoon!
+[61] [enyst1@holly2]% ./greet 18
+Good Evening!
+[62] [enyst1@holly2]% ./gree t 19
+Good Evening!
+[63] [enyst1@holly2]% ./greet 23
+Good Evening!
+[64] [enyst1@holly2]% ./greet 24
+The value of hour must be between 0 and 23
+[65] [enyst1@holly2]% ./greet
+Good Afternoon!
+[66] [enyst1@holly2]% exit
+exit
+
+Script done on Tue 17 Nov 2015 03:29:02 PM EST

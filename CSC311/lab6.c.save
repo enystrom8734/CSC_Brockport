@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int main()
+{
+	/* Declare int1, int2, and int3 as integers */
+	int int1, int2, int3;
+	int intDigits[5];
+	
+	/* Prompt user for int1 */
+	printf("\nPlease enter int1: ");
+	/* Wait for user input for int1 */
+	scanf("%d", &int1);
+	/* Prompt user for int2 */	
+	printf("Please enter int2: ");
+	/* Wait for user input for int2 */
+        scanf("%d", &int2);
+	/* Prompt user for int3 */
+	printf("Please enter int3: ");
+	/* Wait for user input for int3 */
+        scanf("%d", &int3);
+
+	int output = int1*int2-int3;
+
+	printf("\nYour output is %d\n\n", output);
+
+	printf("This is a C program\n\n");
+        printf("This is\na C program\n\n");
+        printf("This\nis\na\nC\nprogram\n\n");
+        printf("This\tis\ta\tC\tprogram\n\n");
+	printf("***** \n**** \n*** \n** \n*\n\n");
+
+	printf(" Please enter in 5 digit integer: ");
+	scanf("%d", &int3);
+	
+	int i, temp;
+	temp = int3;
+	for (i = 0; i < 5; i++) {
+		intDigits[i] = temp % 10;
+		temp = temp / 10;
+	}
+
+}
+

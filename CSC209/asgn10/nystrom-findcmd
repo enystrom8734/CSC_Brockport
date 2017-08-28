@@ -1,0 +1,59 @@
+Script started on Tue 01 Dec 2015 02:36:27 PM EST
+[51] [enyst1@holly2]% cat findcmd 
+#! /bin/bash
+# This program will find the given command in the 
+# users path and system path
+#
+# Invoke as
+#
+# ./findcmd command
+#
+#
+# Check for argument
+if [[ $# -ne 1 ]]
+   then 
+      echo "usage: $0 command"
+      exit 1
+fi
+# Save the $PATH as $pathlist for modified purposes
+pathlist=`echo $PATH | tr ':' ' '`
+
+# For loop for checking paths
+for i in $pathlist; do
+   # Check if the directory is readable and executable
+   if [[ -r $i && -x $i ]]
+      then
+         # Find in the listed directory for command
+         cmd=`find $i -name $1`
+         # Check if file is executable
+         if [[ -x $cmd ]]
+            then
+               echo $cmd
+               exit 0
+         fi
+      else
+         echo $i not readable or executable, skipping...
+   fi
+done
+
+# Loop finished and no command found, print and exit
+echo $1: command not found
+exit 0
+[52] [enyst1@holly2]% ./findcmd 
+usage: ./findcmd command
+[53] [enyst1@holly2]% ./findcmd findcmd 
+./findcmd
+[54] [enyst1@holly2]% which findcmd 
+.//findcmd
+[55] [enyst1@holly2]% ./fn[Kindcmd ping
+/bin/ping
+[56] [enyst1@holly2]% which ping
+/bin/ping
+[57] [enyst1@holly2]% ./findcmd ting
+ting: command not found
+[58] [enyst1@holly2]% .[Kwhich ting
+ting: Command not found.
+[59] [enyst1@holly2]% exit
+exit
+
+Script done on Tue 01 Dec 2015 02:37:34 PM EST

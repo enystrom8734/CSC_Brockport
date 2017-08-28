@@ -1,0 +1,46 @@
+Everytime you read a character, read a second character right away
+
+Read response
+Read dummy
+
+Strings in C
+
+Strings are arrays of characters, no such thing as a String class
+
+Char s[80]; // String declaration
+
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int i;
+int n = strlen(s);
+for (i = 0; i < n; i++) {
+	s[i]...;
+}
+	
+
+Integer Operators
++, , *, /, %, &&, ||, !, &, |, ~, ^, <, >, <=, >=, !=, ==, sizeof, <<, 
+>>
+
+int z = x & y;
+
+char 1 byte
+short 2 bytes
+long = int = 4 bytes
+float = 4 bytes
+double = 8 bytes
+long double = 12 bytes
+
+array of all types 
+especially char(string)
+
+structured type ( struct)
+various types put together under one name
+
+pointer data type
+
+
+
+

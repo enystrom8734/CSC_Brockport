@@ -1,0 +1,45 @@
+#!/bin/bash
+# The program will restore the named file/directory from
+# the ~/.trash and place it in the current working directory.
+# Invoke as
+#
+#     ./undelete filename
+#
+# Check for argument
+if [[ $# -ne 1 ]] 
+   then
+      echo "usage: $0 filename"
+      exit 1
+fi
+# Save Current working directory as variable 
+cwd=`pwd`
+# Check if ~/.trash exists; exit with error otherwise
+if [[ !(-d ~/.trash) ]] 
+   then
+      echo "~/.trash does not exist"
+	  exit 2
+fi
+# Check if the named entry exists in the trash
+if [[ !(-e ~/.trash/$1) ]] 
+   then
+      echo "$0: $1 does not exist"
+      exit 3
+fi
+# Check if cwd contains an entry with the given name
+if [[ -e ./$1 ]] 
+   then
+      echo -n "$0: $1 exists in current directory. Overwrite? (y/n) "
+      read resp
+      if [[ $resp == "y" ]] 
+         then
+            rm -rf $cwd/$1
+         else
+            echo "$0: $1 was not restored"
+            exit 4
+      fi
+fi
+# Move the entry from the ~/.trash to cwd
+mv ~/.trash/$1 $cwd/$1
+exit 0
+#
+
